@@ -64,7 +64,7 @@ public class DaoEtudiant {
                 etudiants.add(etud);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoClasse.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoEtudiant.class.getName()).log(Level.SEVERE, null, ex);
         }
         mysql.closeConnexion();
         return etudiants;
