@@ -45,12 +45,33 @@ public class DaoEtudiant {
         mysql.closeConnexion();
        return id;
     }
-
+    
     private static class etud {
 
-        private static String getName() {
-            
+    private static String getName() {
+    public ArrayList<Etudiant> selectAll() {
+        ArrayList<Etudiant> etudiants = new ArrayList();
+        DaoMysql mysql = new DaoMysql();
+        mysql.ouvrirConnexionBD();
+        mysql.preparerRequete(SQL_SELECTALL);
+        ResultSet rs = mysql.executeSelect();
+        try {
+            while(rs.next()){
+                Etudiant etud = new Etudiant();
+                etud.setId(rs.getInt("idEtudiant"));
+                etud.setmatricule(rs.getString("matricule"));
+                etud.setTuteur(rs.getString("tuteur"));
+                etudiants.add(etud);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoClasse.class.getName()).log(Level.SEVERE, null, ex);
         }
+        mysql.closeConnexion();
+        return etudiants;
+    }
+    }
+            
+     
 
         public etud() {
         }
